@@ -1,0 +1,15 @@
+@page "/"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Index> Localizer
+
+<h3>@Localizer["Welcome"]</h3>
+<button @onclick="ToggleLanguage">Dil Değiştir / Change Language</button>
+
+<p>Calendar placeholder - FullCalendar entegrasyonu için sonraki adım.</p>
+
+@code {
+    private void ToggleLanguage()
+    {
+        // JS interop ile culture değiştir (basit implementasyon)
+    }
+}
