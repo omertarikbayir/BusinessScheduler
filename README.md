@@ -1,6 +1,13 @@
-# BusinessScheduler | İş Randevu Planlama Sistemi
+# 🗓️ BusinessScheduler | İş Randevu Planlama Sistemi
 
-> 🇹🇷 Türkçe | 🇬🇧 English | .NET 8 | Blazor WebAssembly | REST API
+[![.NET](https://img.shields.io/badge/.NET-8.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![Blazor](https://img.shields.io/badge/Blazor-WebAssembly-5C2D91.svg)](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
+[![REST API](https://img.shields.io/badge/REST-API-FF6C37.svg)](https://restfulapi.net/)
+[![EF Core](https://img.shields.io/badge/EF_Core-8.0-512BD4.svg)](https://learn.microsoft.com/en-us/ef/core/)
+[![SQL Server](https://img.shields.io/badge/SQL_Server-2019+-CC2927.svg)](https://www.microsoft.com/en-us/sql-server)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> 🇹🇷 **Türkçe** | 🇬🇧 **English** | 🧩 **Blazor WASM** | ⚙️ **REST API** | 🗄️ **SQL Server**
 
 ---
 
@@ -8,131 +15,120 @@
 
 ### Proje Özeti
 
-**BusinessScheduler**, modern işletmelerin randevu ve takvim yönetim ihtiyaçlarını karşılamak için geliştirilmiş çift dilli bir randevu planlama sistemidir. ASP.NET Core Web API backend, Blazor WebAssembly frontend ve Entity Framework Core ile SQL Server veritabanı kullanır.
+**BusinessScheduler**, modern işletmelerin randevu ve takvim yönetim ihtiyaçlarını karşılamak için geliştirilmiş, **çift dilli (Türkçe/İngilizce)** bir randevu planlama sistemidir.
+
+**Mimari:** ASP.NET Core Web API (backend) + Blazor WebAssembly (frontend) + Entity Framework Core (ORM) + SQL Server (veritabanı). Clean Architecture prensipleriyle tasarlanmış, production-ready bir çözümdür.
 
 ### Kullanım Senaryoları
 
-- Kuaför, berber, dişçi gibi hizmet işletmelerinde randevu yönetimi
-- Danışmanlık firmalarında müşteri randevu takibi
-- Eğitim kurumlarında öğretmen-öğrenci görüşme planlaması
-- Sağlık kuruluşlarında hasta randevu sistemi
-- Her türlü hizmet sektöründe çevrimiçi rezervasyon
+*   💈 **Hizmet İşletmeleri:** Kuaför, berber, dişçi, güzellik merkezi randevuları
+*   🧑‍💼 **Danışmanlık:** Müşteri randevu takibi ve yönetimi
+*   🏫 **Eğitim Kurumları:** Öğretmen-öğrenci görüşme planlaması
+*   🏥 **Sağlık Kuruluşları:** Hasta randevu sistemi
+*   📅 **Genel Kullanım:** Her türlü hizmet sektörü için çevrimiçi rezervasyon
 
 ### Kullanılan Teknolojiler
 
 | Bileşen | Teknoloji | Amaç |
-|---------|-----------|------|
-| .NET | 8.0 | Ana framework |
-| Blazor WebAssembly | .NET 8 | SPA frontend (C# ile) |
-| ASP.NET Core | 8.0 | REST API |
-| Entity Framework Core | 8.0 | ORM / Veritabanı |
-| SQL Server | 2019+ | Veritabanı |
-| xUnit | 2.5+ | Birim testleri |
+| :--- | :--- | :--- |
+| **Framework** | .NET 8 | Ana framework |
+| **Frontend** | Blazor WebAssembly | SPA (Single Page Application), C# ile tarayıcıda çalışır |
+| **Backend API** | ASP.NET Core 8 | RESTful API servisleri |
+| **ORM** | Entity Framework Core 8 | Veritabanı işlemleri (Code-First) |
+| **Veritabanı** | SQL Server 2019+ | Veri kalıcılığı |
+| **Test** | xUnit 2.5+ | Birim testleri |
+| **Yerelleştirme**| .RESX | Çift dilli UI desteği |
 
 ### Proje Yapısı
 
-```
-BusinessScheduler/
-│   .gitignore
-│   BusinessScheduler.sln
-│   LICENSE
-│   README.md
-│
-├───src
-│   ├───Api/                          # ASP.NET Core Web API
-│   │   ├───Controllers/              # API endpoint'leri
-│   │   ├───Data/                     # DbContext ve migrations
-│   │   ├───Models/                   # Entity modelleri
-│   │   ├───Services/                 # İş mantığı servisleri
-│   │   └───Properties/               # launchSettings
-│   │
-│   └───Client/                       # Blazor WebAssembly
-│       ├───Layout/                   # Ana layout bileşenleri
-│       ├───Pages/                    # Sayfalar
-│       ├───Resources/                # Yerelleştirme dosyaları
-│       └───wwwroot/                  # Statik dosyalar
-│
-└───tests
-    └───Api.Tests/                    # xUnit testleri
-            AppointmentTests.cs
-            UnitTest1.cs
-```
+    BusinessScheduler/
+    │   .gitignore
+    │   BusinessScheduler.sln
+    │   LICENSE
+    │   README.md
+    │
+    ├───src/
+    │   ├───Api/                          # Backend: ASP.NET Core Web API
+    │   │   ├───Controllers/              # API endpoint'leri
+    │   │   ├───Data/                     # DbContext ve Migration dosyaları
+    │   │   ├───Models/                   # Entity modelleri (veritabanı)
+    │   │   ├───Services/                 # İş mantığı servisleri (Dependency Injection ile)
+    │   │   └───Properties/               # launchSettings.json (ortam ayarları)
+    │   │
+    │   └───Client/                       # Frontend: Blazor WebAssembly
+    │       ├───Layout/                   # Ana layout (NavMenu, MainLayout)
+    │       ├───Pages/                    # Uygulama sayfaları (Index, Appointment, etc.)
+    │       ├───Resources/                # Yerelleştirme (.resx) dosyaları (TR/EN)
+    │       └───wwwroot/                  # Statik dosyalar (CSS, JS, icons)
+    │
+    └───tests/
+        └───Api.Tests/                    # xUnit test projesi
+                AppointmentTests.cs
+                UnitTest1.cs
 
 ### Özellikler
 
 | Özellik | Açıklama |
-|---------|----------|
-| ✅ **Çift Dilli Arayüz (TR/EN)** | Tüm UI ve veriler çalışma anında dil değiştirebilir |
-| ✅ **Randevu Yönetimi** | CRUD işlemleri, tarih/saat bazlı filtreleme |
-| ✅ **Müsaitlik Kontrolü** | Çakışan randevuları engelleme, zaman dilimi yönetimi |
+| :--- | :--- |
+| ✅ **Çift Dilli Arayüz (TR/EN)** | Tüm UI ve bildirimler, çalışma anında dil değiştirebilir |
+| ✅ **Randevu Yönetimi** | CRUD işlemleri, tarih/saat bazlı filtreleme ve arama |
+| ✅ **Müsaitlik Kontrolü** | Çakışan randevuları otomatik engelleme, dinamik zaman dilimi yönetimi |
 | ✅ **Servis Yönetimi** | Hizmet bazlı randevu süresi ve ücret tanımlama |
-| ✅ **Müşteri Yönetimi** | Müşteri kaydı, randevu geçmişi |
-| ✅ **Randevu Hatırlatma** | E-posta ile otomatik hatırlatma |
+| ✅ **Müşteri Yönetimi** | Müşteri kaydı, randevu geçmişi ve iletişim bilgileri |
+| ✅ **Randevu Hatırlatma** | E-posta ile otomatik hatırlatma (arkaplan servisi) |
 | ✅ **Takvim Görünümü** | Haftalık/aylık takvim ile randevu takibi |
-| ✅ **Excel/PDF Raporlama** | Randevu ve istatistik raporları |
+| ✅ **Excel/PDF Raporlama** | Randevu istatistikleri ve müşteri raporları |
 
 ### Hızlı Başlangıç
 
 #### 1. Projeyi Klonla
 
-```bash
-git clone https://github.com/omertarikbayir/BusinessScheduler.git
-cd BusinessScheduler
-```
+    git clone https://github.com/omertarikbayir/BusinessScheduler.git
+    cd BusinessScheduler
 
 #### 2. Bağımlılıkları Yükle ve Derle
 
-```bash
-dotnet restore
-dotnet build BusinessScheduler.sln -c Release
-```
+    dotnet restore
+    dotnet build BusinessScheduler.sln -c Release
 
 #### 3. Connection String'i Güncelle
 
 `src/Api/appsettings.json` dosyasını düzenleyin:
 
-```json
-{
-  "ConnectionStrings": {
-    "Default": "Server=(localdb)\\mssqllocaldb;Database=BusinessSchedulerDB;Trusted_Connection=True;"
-  }
-}
-```
+    {
+      "ConnectionStrings": {
+        "Default": "Server=(localdb)\\mssqllocaldb;Database=BusinessSchedulerDB;Trusted_Connection=True;"
+      }
+    }
 
 #### 4. Veritabanı Migration'larını Çalıştır
 
-```bash
-dotnet ef database update --project src/Api
-```
+    dotnet ef database update --project src/Api
 
 #### 5. Uygulamayı Başlat
 
 **API Sunucusu:**
-```bash
-dotnet run --project src/Api
-```
+
+    dotnet run --project src/Api
 
 **Blazor WebAssembly İstemcisi:**
-```bash
-dotnet run --project src/Client
-```
+
+    dotnet run --project src/Client
 
 ### API Endpoint'leri (Örnek)
 
 | Metot | Endpoint | Açıklama |
-|-------|----------|----------|
+| :--- | :--- | :--- |
 | GET | `/api/appointments` | Randevu listesi |
 | GET | `/api/appointments/{id}` | Randevu detayı |
 | POST | `/api/appointments` | Yeni randevu oluştur |
 | PUT | `/api/appointments/{id}` | Randevu güncelle |
 | DELETE | `/api/appointments/{id}` | Randevu iptal et |
-| GET | `/api/availability/{date}` | Müsait saatler |
+| GET | `/api/availability/{date}` | Belirli tarih için müsait saatler |
 
 ### Testleri Çalıştırma
 
-```bash
-dotnet test tests/Api.Tests
-```
+    dotnet test tests/Api.Tests
 
 ---
 
@@ -140,109 +136,83 @@ dotnet test tests/Api.Tests
 
 ### Project Summary
 
-**BusinessScheduler** is a bilingual appointment scheduling system developed to meet the scheduling and calendar management needs of modern businesses. It uses ASP.NET Core Web API backend, Blazor WebAssembly frontend, and Entity Framework Core with SQL Server database.
+**BusinessScheduler** is a **bilingual (Turkish/English)** appointment scheduling system developed to meet the scheduling and calendar management needs of modern businesses.
+
+**Architecture:** ASP.NET Core Web API (backend) + Blazor WebAssembly (frontend) + Entity Framework Core (ORM) + SQL Server (database). Designed with Clean Architecture principles as a production-ready solution.
 
 ### Use Cases
 
-- Appointment management for service businesses (hair salons, dental clinics)
-- Client appointment tracking for consulting firms
-- Teacher-student meeting scheduling for educational institutions
-- Patient appointment systems for healthcare providers
+*   💈 **Service Businesses:** Salons, barbershops, dental clinics, beauty centers
+*   🧑‍💼 **Consulting:** Client appointment tracking and management
+*   🏫 **Education:** Teacher-student meeting scheduling
+*   🏥 **Healthcare:** Patient appointment systems
+*   📅 **General:** Online reservations for any service industry
 
 ### Technologies Used
 
 | Component | Technology | Purpose |
-|-----------|------------|---------|
-| .NET | 8.0 | Main framework |
-| Blazor WebAssembly | .NET 8 | SPA frontend |
-| ASP.NET Core | 8.0 | REST API |
-| Entity Framework Core | 8.0 | ORM / Database |
-| SQL Server | 2019+ | Database |
-| xUnit | 2.5+ | Unit testing |
-
-### Project Structure
-
-```
-BusinessScheduler/
-│   .gitignore
-│   BusinessScheduler.sln
-│   LICENSE
-│   README.md
-│
-├───src
-│   ├───Api/                          # ASP.NET Core Web API
-│   │   ├───Controllers/              # API endpoints
-│   │   ├───Data/                     # DbContext and migrations
-│   │   ├───Models/                   # Entity models
-│   │   ├───Services/                 # Business logic services
-│   │   └───Properties/               # launchSettings
-│   │
-│   └───Client/                       # Blazor WebAssembly
-│       ├───Layout/                   # Layout components
-│       ├───Pages/                    # Pages
-│       ├───Resources/                # Localization files
-│       └───wwwroot/                  # Static files
-│
-└───tests
-    └───Api.Tests/                    # xUnit tests
-            AppointmentTests.cs
-            UnitTest1.cs
-```
+| :--- | :--- | :--- |
+| **Framework** | .NET 8 | Main framework |
+| **Frontend** | Blazor WebAssembly | SPA, runs C# in the browser |
+| **Backend API** | ASP.NET Core 8 | RESTful API services |
+| **ORM** | Entity Framework Core 8 | Database operations (Code-First) |
+| **Database** | SQL Server 2019+ | Data persistence |
+| **Testing** | xUnit 2.5+ | Unit testing |
+| **Localization**| .RESX | Bilingual UI support |
 
 ### Features
 
 | Feature | Description |
-|---------|-------------|
-| ✅ **Bilingual UI (TR/EN)** | Runtime-switchable UI and data |
-| ✅ **Appointment Management** | CRUD operations with date/time filtering |
-| ✅ **Availability Check** | Conflict prevention, time slot management |
-| ✅ **Service Management** | Service-based duration and pricing |
-| ✅ **Customer Management** | Customer records and appointment history |
-| ✅ **Appointment Reminders** | Automatic email notifications |
-| ✅ **Calendar View** | Weekly/monthly calendar |
-| ✅ **Excel/PDF Reporting** | Appointment and statistics reports |
+| :--- | :--- |
+| ✅ **Bilingual UI (TR/EN)** | Runtime-switchable UI and notifications |
+| ✅ **Appointment Management** | CRUD operations with date/time filtering and search |
+| ✅ **Availability Check** | Automatic conflict prevention, dynamic time slot management |
+| ✅ **Service Management** | Service-based duration and pricing definition |
+| ✅ **Customer Management** | Customer records, appointment history, contact info |
+| ✅ **Appointment Reminders** | Automatic email reminders (background service) |
+| ✅ **Calendar View** | Weekly/monthly calendar for appointment tracking |
+| ✅ **Excel/PDF Reporting** | Appointment statistics and customer reports |
 
 ### Quick Start
 
-```bash
-# Clone repository
-git clone https://github.com/omertarikbayir/BusinessScheduler.git
-cd BusinessScheduler
+    # Clone repository
+    git clone https://github.com/omertarikbayir/BusinessScheduler.git
+    cd BusinessScheduler
 
-# Restore and build
-dotnet restore
-dotnet build BusinessScheduler.sln -c Release
+    # Restore and build
+    dotnet restore
+    dotnet build BusinessScheduler.sln -c Release
 
-# Update database
-dotnet ef database update --project src/Api
+    # Update database
+    dotnet ef database update --project src/Api
 
-# Run API
-dotnet run --project src/Api
+    # Run API
+    dotnet run --project src/Api
 
-# Run Blazor client
-dotnet run --project src/Client
+    # Run Blazor client
+    dotnet run --project src/Client
 
-# Run tests
-dotnet test tests/Api.Tests
-```
+    # Run tests
+    dotnet test tests/Api.Tests
 
 ### API Endpoints (Example)
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+| :--- | :--- | :--- |
 | GET | `/api/appointments` | List appointments |
 | GET | `/api/appointments/{id}` | Get appointment details |
 | POST | `/api/appointments` | Create new appointment |
 | PUT | `/api/appointments/{id}` | Update appointment |
 | DELETE | `/api/appointments/{id}` | Cancel appointment |
-| GET | `/api/availability/{date}` | Get available time slots |
+| GET | `/api/availability/{date}` | Get available time slots for a date |
 
 ---
 
 ## 📝 Notlar | Notes
 
-- Bu proje **kurumsal kullanıma hazır** bir şablon olarak tasarlanmıştır | This project is designed as a **production-ready enterprise template**
-- E-posta bildirimleri için geçerli SMTP ayarları gereklidir | Valid SMTP settings required for email notifications
+*   Bu proje **kurumsal kullanıma hazır** bir şablon olarak tasarlanmıştır | This project is designed as a **production-ready enterprise template**.
+*   E-posta bildirimleri için geçerli SMTP ayarları gereklidir | Valid SMTP settings required for email notifications.
+*   JWT Authentication eklenmesi planlanmaktadır (şu an open API) | JWT Authentication is planned (currently open API).
 
 ---
 
